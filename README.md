@@ -1,1 +1,1 @@
-针对我家光猫的 Cloudflare DDNS
+基于 Python + Playwright，在 Huawei OptiXstar V173 光猫硬核实现 DDNS（+Cloudflare API）
