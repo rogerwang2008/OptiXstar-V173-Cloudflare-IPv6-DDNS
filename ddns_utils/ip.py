@@ -62,3 +62,8 @@ def save_ip(ip: str):
     version = check_version(ip)
     with open(IP_STORED_FILE[version], "w") as f:
         f.write(ip)
+
+
+def delete_saved_ip(version: Literal[4, 6] = 4):
+    with open(IP_STORED_FILE[version], "w") as f:
+        f.write("")

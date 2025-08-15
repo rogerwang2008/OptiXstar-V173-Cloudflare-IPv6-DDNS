@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 # 设置默认超时时间
 # 注意：async_playwright 上下文管理器会处理启动和关闭
 # expect 默认超时可以通过其方法设置，这里先设置一个全局的参考值
-DEFAULT_TIMEOUT = 60000
+DEFAULT_TIMEOUT = 90000
 
 
 class RouterAutomationRunnerAsync:
