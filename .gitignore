@@ -1,0 +1,6 @@
+.venv/
+config.env
+
+ipv4.txt
+ipv6.txt
+screenshots/*
