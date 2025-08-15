@@ -29,9 +29,9 @@ async def main():
         for record_id in os.getenv("CLOUDFLARE_IPV6_RECORD_IDS").split(","):
             cloudflare.update_record_ip(os.getenv("CLOUDFLARE_ZONE_ID"), record_id, ipv6)
 
-        async with router_automation_async.RouterAutomationRunnerAsync(headless=True, screenshot=True,
-                                                                       playwright_channel=os.getenv(
-                                                                               "PLAYWRIGHT_CHANNEL")) as runner:
+        async with router_automation_async.RouterAutomationRunnerAsync(
+                admin_username=os.getenv("ROUTER_ADMIN_USERNAME"), admin_password=os.getenv("ROUTER_ADMIN_PASSWORD"),
+                headless=True, screenshot=True, playwright_channel=os.getenv("PLAYWRIGHT_CHANNEL")) as runner:
             # 执行登录
             await runner.login()
             # 导航到端口映射页面

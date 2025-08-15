@@ -12,7 +12,9 @@ DEFAULT_TIMEOUT = 90000
 
 
 class RouterAutomationRunnerAsync:
-    def __init__(self, headless: bool = True, screenshot: bool = True, *, playwright_channel: str = "msedge"):
+    def __init__(self, admin_username: str, admin_password: str, headless: bool = True, screenshot: bool = True, *, playwright_channel: str = "msedge"):
+        self.admin_username = admin_username
+        self.admin_password = admin_password
         self.screenshot = screenshot
         self.headless = headless
         self.playwright_channel = playwright_channel
@@ -57,8 +59,8 @@ class RouterAutomationRunnerAsync:
         logger.debug("进入登录页面成功")
         # 使用 evaluate 执行页面上的 JavaScript 函数
         await self.page.evaluate("AdminuserSubmit1")
-        await self.page.locator("input#txt_normalUsername").fill("user")
-        await self.page.locator("input#txt_normalPassword").fill("abvcdfds")
+        await self.page.locator("input#txt_normalUsername").fill(self.admin_username)
+        await self.page.locator("input#txt_normalPassword").fill(self.admin_password)
         await self.page.evaluate("SubmitForm")
         # 等待登录成功的标识元素出现
         await expect(self.page.locator("#headerLogoutText")).to_be_visible(timeout=DEFAULT_TIMEOUT)
