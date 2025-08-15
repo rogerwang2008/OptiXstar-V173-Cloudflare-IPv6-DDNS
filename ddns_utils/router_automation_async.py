@@ -27,7 +27,11 @@ class RouterAutomationRunnerAsync:
         self.playwright = await async_playwright().start()
         # 注意：channel="msedge" 在异步 API 中可能行为略有不同或不被支持，根据实际情况调整
         # 如果遇到问题，可以尝试移除 channel 参数或使用 'chromium'
-        self.browser = await self.playwright.chromium.launch(channel=self.playwright_channel, headless=self.headless)
+        if self.playwright_channel == "firefox":
+            self.browser = await self.playwright.firefox.launch(channel=self.playwright_channel, headless=self.headless)
+        else:
+            self.browser = await self.playwright.chromium.launch(channel=self.playwright_channel,
+                                                                 headless=self.headless)
         self.page = await self.browser.new_page()
         # 为页面设置默认超时
         self.page.set_default_timeout(DEFAULT_TIMEOUT)
